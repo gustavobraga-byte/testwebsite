@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - TerroirLink</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .admin-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--coffee-dark);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #ddd;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            color: var(--coffee-dark);
+            border-bottom-color: var(--green-medium);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .admin-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .admin-card h3 {
+            color: var(--coffee-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--green-medium);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: var(--green-medium);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            padding: 0.5rem 1rem;
+            background: var(--text-light);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-danger {
+            padding: 0.5rem 1rem;
+            background: #dc3545;
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .menu-list,
+        .news-list,
+        .video-list {
+            margin-top: 2rem;
+        }
+        
+        .menu-item,
+        .news-item,
+        .video-item {
+            background: var(--cream);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .menu-item-info,
+        .news-item-info,
+        .video-item-info {
+            flex: 1;
+        }
+        
+        .menu-item-actions,
+        .news-item-actions,
+        .video-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            color: var(--coffee-dark);
+            margin-bottom: 2rem;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo_final_colorful.png" alt="TerroirLink" class="logo-img logo-emphasis">
+                <span>TerroirLink - Admin</span>
+            </div>
+            <div class="nav-language-switcher">
+                <select id="language-select-admin" onchange="changeLanguageAdmin(this.value)">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="pt">Português</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="index.html" style="color: var(--white); text-decoration: none;">View Site</a>
+                <a href="page-manager.html" style="color: var(--white); text-decoration: none; background: var(--green-medium); padding: 0.5rem 1rem; border-radius: 5px;">Page Manager</a>
+                <button class="btn-secondary" onclick="logout()" style="color: white;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container" id="admin-content" style="display: none;">
+            <div class="admin-header">
+                <h1>Painel Administrativo</h1>
+                <p>Gerencie o conteúdo do seu site</p>
+            </div>
+
+        <div class="success-message" id="success-message"></div>
+
+            <!-- Tabs -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="switchTab('menus')">Menus</button>
+                <button class="tab-btn" onclick="switchTab('news')">Notícias</button>
+                <button class="tab-btn" onclick="switchTab('videos')">Vídeos</button>
+                <button class="tab-btn" onclick="switchTab('images')">Imagens</button>
+                <button class="tab-btn" onclick="switchTab('settings')">Configurações</button>
+            </div>
+
+        <!-- Menus Tab -->
+        <div id="menus-tab" class="tab-content active">
+            <div class="admin-card">
+                <h3>Add Menu Item</h3>
+                <form id="menu-form">
+                    <div class="form-group">
+                        <label>Menu Name</label>
+                        <input type="text" id="menu-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Link (e.g., #about)</label>
+                        <input type="text" id="menu-link" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Order</label>
+                        <input type="number" id="menu-order" value="0" min="0">
+                    </div>
+                    <button type="submit" class="btn-primary">Add Menu Item</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Current Menus</h3>
+                <div class="menu-list" id="menu-list">
+                    <!-- Menu items will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- News Tab -->
+        <div id="news-tab" class="tab-content">
+            <div class="admin-card">
+                <h3>Add News Article</h3>
+                <form id="admin-news-form">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="admin-news-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="admin-news-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea id="admin-news-content" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Publish News</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Published News</h3>
+                <div class="news-list" id="admin-news-list">
+                    <!-- News items will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos Tab -->
+        <div id="videos-tab" class="tab-content">
+            <div class="admin-card">
+                <h3>Add Video</h3>
+                <form id="admin-video-form">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="admin-video-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Video URL (YouTube, Vimeo, etc.)</label>
+                        <input type="url" id="admin-video-url" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="admin-video-desc" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Video</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Added Videos</h3>
+                <div class="video-list" id="admin-video-list">
+                    <!-- Video items will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Images Tab -->
+        <div id="images-tab" class="tab-content">
+            <div class="admin-card">
+                <h3>Upload Image</h3>
+                <form id="image-form">
+                    <div class="form-group">
+                        <label>Image Name</label>
+                        <input type="text" id="image-name" placeholder="e.g., hero-bg, team-photo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image File</label>
+                        <input type="file" id="image-file" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="image-category">
+                            <option value="logos">Logos</option>
+                            <option value="banners">Banners</option>
+                            <option value="team">Team Photos</option>
+                            <option value="research">Research Images</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Upload Image</button>
+                </form>
+                <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+                    Note: For static hosting, save images to the /images folder manually or use Base64 encoding.
+                </p>
+            </div>
+
+            <div class="admin-card">
+                <h3>Image Gallery</h3>
+                <div class="video-list" id="image-gallery">
+                    <p>Images will be displayed here. Upload to /images folder and refresh.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings-tab" class="tab-content">
+            <div class="admin-card">
+                <h3>Site Settings</h3>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label>Site Title</label>
+                        <input type="text" id="setting-title" value="TerroirLink">
+                    </div>
+                    <div class="form-group">
+                        <label>Subtitle</label>
+                        <input type="text" id="setting-subtitle" value="Specialty Coffee, Sustainability & Innovation">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="email" id="setting-email" value="gustavo.bastos@ufv.br">
+                    </div>
+                    <div class="form-group">
+                        <label>Footer Text</label>
+                        <input type="text" id="setting-footer" value="Building sustainable coffee value chains through innovation and collaboration">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Settings</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Change Password</h3>
+                <form id="password-form">
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" id="current-password">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" id="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" id="confirm-password">
+                    </div>
+                    <button type="submit" class="btn-primary">Change Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-container" id="login-container">
+        <h2>Admin Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Login</button>
+        </form>
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+            Default: admin / cafe2024
+        </p>
+    </div>
+
+    <script>
+        // Login functionality
+        const DEFAULT_USER = 'admin';
+        const DEFAULT_PASS = 'cafe2024';
+
+        // Check if already logged in
+        if (localStorage.getItem('cafe-mrm-admin-logged-in') === 'true') {
+            showAdminPanel();
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === DEFAULT_USER && password === DEFAULT_PASS) {
+                localStorage.setItem('cafe-mrm-admin-logged-in', 'true');
+                showAdminPanel();
+                showMessage('Login successful!');
+            } else {
+                alert('Invalid credentials. Try admin / cafe2024');
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('cafe-mrm-admin-logged-in');
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('admin-content').style.display = 'none';
+            showMessage('Logged out successfully!');
+        }
+
+        function showAdminPanel() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('admin-content').style.display = 'block';
+            loadAllData();
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(function(content) {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        // Menu management
+        document.getElementById('menu-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const menuItem = {
+                name: document.getElementById('menu-name').value,
+                link: document.getElementById('menu-link').value,
+                order: parseInt(document.getElementById('menu-order').value)
+            };
+
+            saveMenuItem(menuItem);
+            addMenuItemToPage(menuItem);
+            this.reset();
+            showMessage('Menu item added successfully!');
+        });
+
+        // News management
+        document.getElementById('admin-news-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newsItem = {
+                title: document.getElementById('admin-news-title').value,
+                date: formatDate(document.getElementById('admin-news-date').value),
+                content: document.getElementById('admin-news-content').value,
+                fulldate: document.getElementById('admin-news-date').value
+            };
+
+            saveNews(newsItem);
+            addAdminNewsItem(newsItem);
+            this.reset();
+            showMessage('News article published successfully!');
+        });
+
+        // Video management
+        document.getElementById('admin-video-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const videoItem = {
+                title: document.getElementById('admin-video-title').value,
+                url: document.getElementById('admin-video-url').value,
+                desc: document.getElementById('admin-video-desc').value
+            };
+
+            saveVideo(videoItem);
+            addAdminVideoItem(videoItem);
+            this.reset();
+            showMessage('Video added successfully!');
+        });
+
+        // Settings management
+        document.getElementById('settings-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const settings = {
+                title: document.getElementById('setting-title').value,
+                subtitle: document.getElementById('setting-subtitle').value,
+                email: document.getElementById('setting-email').value,
+                footer: document.getElementById('setting-footer').value
+            };
+
+            localStorage.setItem('cafe-mrm-settings', JSON.stringify(settings));
+            showMessage('Settings saved successfully!');
+        });
+
+        // Password change
+        document.getElementById('password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const current = document.getElementById('current-password').value;
+            const newPass = document.getElementById('new-password').value;
+            const confirm = document.getElementById('confirm-password').value;
+
+            if (current !== DEFAULT_PASS) {
+                alert('Current password is incorrect.');
+                return;
+            }
+
+            if (newPass !== confirm) {
+                alert('New passwords do not match.');
+                return;
+            }
+
+            // In a real app, you'd save this securely to a backend
+            alert('Password change functionality requires backend integration. For now, use: admin / cafe2024');
+            this.reset();
+        });
+
+        // Save functions
+        function saveMenuItem(item) {
+            let menus = JSON.parse(localStorage.getItem('cafe-mrm-menus') || '[]');
+            menus.push(item);
+            menus.sort(function(a, b) { return a.order - b.order; });
+            localStorage.setItem('cafe-mrm-menus', JSON.stringify(menus));
+        }
+
+        function saveNews(item) {
+            let news = JSON.parse(localStorage.getItem('cafe-mrm-news') || '[]');
+            news.unshift(item);
+            localStorage.setItem('cafe-mrm-news', JSON.stringify(news));
+        }
+
+        function saveVideo(item) {
+            let videos = JSON.parse(localStorage.getItem('cafe-mrm-videos') || '[]');
+            videos.unshift(item);
+            localStorage.setItem('cafe-mrm-videos', JSON.stringify(videos));
+        }
+
+        // Load functions
+        function loadAllData() {
+            loadMenus();
+            loadAdminNews();
+            loadAdminVideos();
+            loadSettings();
+        }
+
+        function loadMenus() {
+            const menus = JSON.parse(localStorage.getItem('cafe-mrm-menus') || '[]');
+            menus.forEach(function(item) {
+                addMenuItemToPage(item);
+            });
+        }
+
+        function loadAdminNews() {
+            const news = JSON.parse(localStorage.getItem('cafe-mrm-news') || '[]');
+            news.forEach(function(item) {
+                addAdminNewsItem(item);
+            });
+        }
+
+        function loadAdminVideos() {
+            const videos = JSON.parse(localStorage.getItem('cafe-mrm-videos') || '[]');
+            videos.forEach(function(item) {
+                addAdminVideoItem(item);
+            });
+        }
+
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('cafe-mrm-settings') || '{}');
+            if (settings.title) {
+                document.getElementById('setting-title').value = settings.title;
+                document.getElementById('setting-subtitle').value = settings.subtitle || '';
+                document.getElementById('setting-email').value = settings.email || '';
+                document.getElementById('setting-footer').value = settings.footer || '';
+            }
+        }
+
+        // Add to page functions
+        function addMenuItemToPage(item) {
+            const container = document.getElementById('menu-list');
+            const div = document.createElement('div');
+            div.className = 'menu-item';
+            div.innerHTML = `
+                <div class="menu-item-info">
+                    <strong>${item.name}</strong> → ${item.link} (Order: ${item.order})
+                </div>
+                <div class="menu-item-actions">
+                    <button class="btn-danger" onclick="deleteMenuItem(this)">Delete</button>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function addAdminNewsItem(item) {
+            const container = document.getElementById('admin-news-list');
+            const div = document.createElement('div');
+            div.className = 'news-item';
+            div.innerHTML = `
+                <div class="news-item-info">
+                    <strong>${item.title}</strong><br>
+                    <small>${item.date}</small><br>
+                    <small>${item.content.substring(0, 100)}...</small>
+                </div>
+                <div class="news-item-actions">
+                    <button class="btn-danger" onclick="deleteNewsItem(this)">Delete</button>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function addAdminVideoItem(item) {
+            const container = document.getElementById('admin-video-list');
+            const div = document.createElement('div');
+            div.className = 'video-item';
+            div.innerHTML = `
+                <div class="video-item-info">
+                    <strong>${item.title}</strong><br>
+                    <small>${item.url}</small><br>
+                    <small>${item.desc}</small>
+                </div>
+                <div class="video-item-actions">
+                    <button class="btn-danger" onclick="deleteVideoItem(this)">Delete</button>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        // Delete functions
+        function deleteMenuItem(button) {
+            if (confirm('Delete this menu item?')) {
+                button.parentElement.parentElement.remove();
+                // Note: In production, also remove from localStorage
+            }
+        }
+
+        function deleteNewsItem(button) {
+            if (confirm('Delete this news article?')) {
+                button.parentElement.parentElement.remove();
+            }
+        }
+
+        function deleteVideoItem(button) {
+            if (confirm('Delete this video?')) {
+                button.parentElement.parentElement.remove();
+            }
+        }
+
+        // Utility functions
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function showMessage(msg) {
+            const msgDiv = document.getElementById('success-message');
+            msgDiv.textContent = msg;
+            msgDiv.classList.add('show');
+            setTimeout(function() {
+                msgDiv.classList.remove('show');
+            }, 3000);
+        }
+
+        // Image upload (simulated)
+        document.getElementById('image-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showMessage('Image upload requires server-side handling. Please upload to /images folder manually.');
+            this.reset();
+        });
+
+        // Language switching for admin panel
+        function changeLanguageAdmin(lang) {
+            // Map language codes to file names
+            const langMap = {
+                'en': 'admin.html',
+                'fr': 'admin-fr.html',
+                'pt': 'admin-pt.html'
+            };
+            
+            const targetFile = langMap[lang] || 'admin.html';
+            
+            // If we're already on the correct page, do nothing
+            if (window.location.pathname.endsWith(targetFile)) {
+                return;
+            }
+            
+            // Redirect to the language-specific page
+            window.location.href = targetFile;
+            
+            // Save preference
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Initialize language on admin panel load
+        function initLanguageAdmin() {
+            const savedLang = localStorage.getItem('preferred-language') || 'en';
+            
+            // If language select exists, set its value and add event listener
+            const langSelect = document.getElementById('language-select-admin');
+            if (langSelect) {
+                langSelect.value = savedLang;
+                langSelect.addEventListener('change', function() {
+                    changeLanguageAdmin(this.value);
+                });
+            }
+        }
+
+        // Call initLanguageAdmin when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initLanguageAdmin);
+    </script>
+</body>
+</html>

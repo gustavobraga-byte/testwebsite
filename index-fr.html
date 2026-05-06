@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerroirLink - Partenariat Scientifique Franco-Brésilien</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo_final_colorful.png" alt="TerroirLink" class="logo-img">
+                <span>TerroirLink</span>
+            </div>
+            <div class="nav-language-switcher">
+                <select id="language-select" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="fr" selected>Français</option>
+                    <option value="pt">Português</option>
+                </select>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À propos</a></li>
+                <li><a href="#team" class="nav-link">Équipe</a></li>
+                <li><a href="#research" class="nav-link">Recherche</a></li>
+                <li><a href="#videos" class="nav-link">Vidéos</a></li>
+                <li><a href="#news" class="nav-link">Actualités</a></li>
+                <li><a href="#partnerships" class="nav-link">Partenariats</a></li>
+                <li><a href="#results" class="nav-link">Résultats</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+<div class="hero-logos">
+             <img src="images/logo_final_colorful.png" alt="Partner Institutions" width="150" height="150" >
+            
+            </div>
+            <div class="hero-logos">
+             <br>
+                 <img src="images/Logos_instituicoes_colorful.png" alt="Partner Institutions" width="600" height="150" >
+              </div>
+            <div class="hero-logos">
+             <br>
+                 <img src="images/Logos_instituicoes_colorful.png" alt="Partner Institutions" width="600" height="150" >
+              </div>
+<h1 class="hero-title">TerroirLink</h1>
+             <p class="hero-subtitle">Connecting Coffee Communities Through Innovation</p>
+            <p class="hero-description">Connecting Coffee Communities Through Innovation</p>
+            <a href="#about" class="hero-cta">Découvrir Notre Projet</a>
+        </div>
+        <div class="hero-flags">
+            <span class="flag">🇫🇷</span>
+            <span class="flag-separator">&</span>
+            <span class="flag">🇧🇷</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">À propos du Projet</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="about-intro">Le projet TerroirLink représente un partenariat de long terme entre des institutions de recherche françaises et brésiliennes, axé sur le café de spécialité, la durabilité et l'innovation.</p>
+                    <p>Né d'une rencontre à IGLS 2023 à Garmisch, en Allemagne, entre Aziz Galvão (UFV) et Anne Rollet (AMU), cette collaboration s'est développée en une initiative de recherche complète reliant l'innovation managériale à l'innovation responsable dans le contexte de la transition agroécologique au Brésil.</p>
+                    <p>Notre mission est de transformer les systèmes de production vers des modèles plus résilients et respectueux de la biodiversité tout en assurant une traçabilité transparente qui valorise le travail humain et l'origine du terroir.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Mois de Durée</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Institutions de Recherche</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">140+</div>
+                        <div class="stat-label">Publications Analysées</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">41</div>
+                        <div class="stat-label">Entretiens en Ferme</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <h3 class="timeline-title">Calendrier du Projet</h3>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Mois 1-4</h4>
+                            <p>Cadrage, revue de littérature et conception méthodologique</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Mois 5-9</h4>
+                            <p>Étude de terrain en France et enquêtes auprès des acteurs</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Mois 10-13</h4>
+                            <p>Étude de terrain au Brésil (Mata de Minas) et analyse SPG</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Mois 14-15</h4>
+                            <p>Rédaction finale, articles Igls/IFAMA et promotion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Comité Scientifique</h2>
+            <p class="section-subtitle">Experts de classe mondiale de France et du Brésil</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">GB</div>
+                    <h3 class="team-name">Gustavo Bastos Braga</h3>
+                    <p class="team-role">Chercheur</p>
+                    <p class="team-institution">Universidade Federal de Viçosa (UFV) & DigitAg</p>
+                    <p class="team-email">gustavo.bastos@ufv.br</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AG</div>
+                    <h3 class="team-name">Aziz Galvão da Silva Jr.</h3>
+                    <p class="team-role">Professeur Chercheur</p>
+                    <p class="team-institution">Universidade Federal de Viçosa (UFV)</p>
+                    <p class="team-expertise">Agro-économie, Management, Durabilité</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AR</div>
+                    <h3 class="team-name">Anne Rollet</h3>
+                    <p class="team-role">Maître de Conférences</p>
+                    <p class="team-institution">Aix-Marseille Université (AMU) - CRETLOG</p>
+                    <p class="team-expertise">Logistique et Supply Chain Management</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">SM</div>
+                    <h3 class="team-name">Sophie Mignon</h3>
+                    <p class="team-role">Professeur Chercheur</p>
+                    <p class="team-institution">Université de Montpellier - MRM</p>
+                    <p class="team-expertise">Stratégie Durable et Management de l'Innovation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Themes Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">Thèmes de Recherche</h2>
+            <div class="themes-grid">
+                <div class="theme-card">
+                    <div class="theme-icon">🌱</div>
+                    <h3 class="theme-title">Durabilité</h3>
+                    <p class="theme-description">Transformation des systèmes de production vers des modèles plus résilients qui respectent la biodiversité. Focus sur la préservation de la Forêt Atlantique et la conformité environnementale.</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">💡</div>
+                    <h3 class="theme-title">Innovation</h3>
+                    <p class="theme-description">Repenser les processus managériaux et frugaux pour les petits producteurs de café de montagne. Technologie de Jumeau Numérique pour les systèmes de traçabilité.</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">🤝</div>
+                    <h3 class="theme-title">Responsabilité</h3>
+                    <p class="theme-description">Assurer une traçabilité transparente qui valorise le travail humain et l'origine du terroir. Connecter les petits producteurs aux marchés premium.</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">📍</div>
+                    <h3 class="theme-title">Traçabilité</h3>
+                    <p class="theme-description">Connectivité numérique et conformité EUDR. Surveillance par satellite, technologie blockchain et Systèmes de Garantie Participatifs (SGP).</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">🌳</div>
+                    <h3 class="theme-title">Forêt Atlantique</h3>
+                    <div class="theme-image">
+                        <img src="images/serra-brigadeiro-1.jpg" alt="Serra do Brigadeiro" class="theme-img">
+                    </div>
+                    <p class="theme-description">Intégration de la préservation forestière dans la valeur du produit. Parc d'État de Serra do Brigadeiro - Biome de la Forêt Atlantique.</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">🎓</div>
+                    <h3 class="theme-title">École du Café Numérique</h3>
+                    <p class="theme-description">Programme éducatif connectant l'agronomie et le commerce grâce à la simulation numérique. Modèles de simulation pour les scénarios de chaîne d'approvisionnement.</p>
+                </div>
+            </div>
+
+            <!-- EUDR Section -->
+            <div class="eudr-section">
+                <h3 class="eudr-title">Conformité EUDR (Règlement UE sur la Déforestation)</h3>
+                <div class="eudr-content">
+                    <div class="eudr-text">
+                        <p>Le nouveau règlement de l'UE exige une géolocalisation précise et une preuve de non-déforestation. La traçabilité numérique par la connectivité devient non-négociable pour l'accès au marché.</p>
+                        <ul class="eudr-list">
+                            <li>Surveillance par satellite + Certification blockchain</li>
+                            <li>Preuve d'origine de la ferme au port</li>
+                            <li>Géolocalisation au niveau de la parcelle</li>
+                            <li>Intégration avec le Code Forestier Brésilien</li>
+                        </ul>
+                    </div>
+                    <div class="eudr-stats">
+                        <div class="eudr-stat">
+                            <span class="eudr-stat-number">33.9%</span>
+                            <span class="eudr-stat-label">Parcelles connectées (Avr 2025)</span>
+                        </div>
+                        <div class="eudr-stat">
+                            <span class="eudr-stat-number">69%</span>
+                            <span class="eudr-stat-label">Couverture nationale 4G/5G</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Serra do Brigadeiro Gallery -->
+            <div class="serra-gallery">
+                <h3 class="gallery-title">Parc d'État de Serra do Brigadeiro</h3>
+                <p class="gallery-subtitle">Zone de Conservation de la Forêt Atlantique - Minas Gerais, Brésil</p>
+                <div class="gallery-grid">
+                    <img src="images/serra-brigadeiro-1.jpg" alt="Serra do Brigadeiro 1" class="gallery-img">
+                    <img src="images/serra-brigadeiro-2.jpg" alt="Serra do Brigadeiro 2" class="gallery-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Vidéos</h2>
+            <p class="section-subtitle">Vidéos du projet, présentations et documentaires</p>
+            <div class="videos-grid" id="videos-container">
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <div class="play-button">▶</div>
+                        <p>Présentation UFV</p>
+                    </div>
+                    <div class="video-info">
+                        <h4>UFV : Nouvelle Identité Visuelle</h4>
+                        <p>Présentation officielle du nouveau logo et des armoiries mises à jour de l'UFV</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <div class="play-button">▶</div>
+                        <p>Vidéo AMU</p>
+                    </div>
+                    <div class="video-info">
+                        <h4>AMU Nouvelle Identité Visuelle</h4>
+                        <p>Découvrez la nouvelle identité de marque et le logo d'AMU</p>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-add-section" id="video-admin-btn" style="display: none;">
+                <button class="admin-btn" onclick="showVideoForm()">+ Ajouter une Vidéo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section">
+        <div class="container">
+            <h2 class="section-title">Actualités & Mises à Jour</h2>
+            <div class="news-container" id="news-container">
+                <div class="news-card">
+                    <div class="news-date">15 Décembre 2025</div>
+                    <h3 class="news-title">Connectivité et Traçabilité pour le Café Durable</h3>
+                    <p class="news-excerpt">Nouvelle publication de recherche sur la conformité EUDR et les systèmes de traçabilité numérique pour les producteurs brésiliens de café...</p>
+                    <a href="#" class="news-link">Lire la Suite →</a>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">Mai 2025</div>
+                    <h3 class="news-title">Présentation COP 30 à Belém</h3>
+                    <p class="news-excerpt">Résultats de l'étude ConectarAGRO/UFV présentés à la COP 30, montrant les données de connectivité et de déforestation à travers les biomes brésiliens...</p>
+                    <a href="#" class="news-link">Lire la Suite →</a>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">Janvier 2025</div>
+                    <h3 class="news-title">Étude de Terrain à Araponga (MG)</h3>
+                    <p class="news-excerpt">41 entretiens réalisés avec des fermiers familiaux, couvrant 835 hectares dans la région de Mata de Minas...</p>
+                    <a href="#" class="news-link">Lire la Suite →</a>
+                </div>
+            </div>
+            <div class="admin-add-section" id="news-admin-btn" style="display: none;">
+                <button class="admin-btn" onclick="showNewsForm()">+ Ajouter un Article</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnerships Section -->
+    <section id="partnerships" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Partenariats & Écosystème</h2>
+            <p class="section-subtitle">Un écosystème territorial intégré</p>
+
+            <!-- Institution Logos -->
+            <div class="partner-logos">
+                <img src="images/Logos_instituicoes_colorful.png" alt="Institutions Partenaires" class="partner-logo">
+            </div>
+
+            <div class="partners-grid">
+                <div class="partner-category">
+                    <h3 class="category-title">🏫 Institutions Académiques</h3>
+                    <div class="partner-items">
+                        <div class="partner-item">Universidade Federal de Viçosa (UFV)</div>
+                        <div class="partner-item">Aix-Marseille Université (AMU)</div>
+                        <div class="partner-item">Université de Montpellier (UM)</div>
+                        <div class="partner-item">CIRAD</div>
+                        <div class="partner-item">Universidade Federal da Paraíba (UFPB)</div>
+                    </div>
+                </div>
+
+                <div class="partner-category">
+                    <h3 class="category-title">🏭 Acteurs Territoriaux</h3>
+                    <div class="partner-items">
+                        <div class="partner-item">Technoparq (Viçosa)</div>
+                        <div class="partner-item">Parc d'État de Serra Brigadeiro</div>
+                        <div class="partner-item">AgroPlus Brésil</div>
+                        <div class="partner-item">Communautés Locales</div>
+                    </div>
+                </div>
+
+                <div class="partner-category">
+                    <h3 class="category-title">☕ Partenaires Commerciaux</h3>
+                    <div class="partner-items">
+                        <div class="partner-item">Bibal (Torréfacteur Français)</div>
+                        <div class="partner-item">Fermes Familiales du Minas Gerais</div>
+                        <div class="partner-item">Producteurs de Café d'Araponga</div>
+                    </div>
+                </div>
+
+                <div class="partner-category">
+                    <h3 class="category-title">💰 Financement</h3>
+                    <div class="partner-items">
+                        <div class="partner-item">#DigitAg</div>
+                        <div class="partner-item">Financement de Projet Thématique Long</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Twin School -->
+            <div class="school-section">
+                <h3 class="school-title">🌐 École du Café Numérique</h3>
+                <p class="school-description">Un programme éducatif reliant l'agronomie et le commerce grâce à la simulation numérique.</p>
+                <div class="school-stats">
+                    <div class="school-stat">
+                        <span class="school-stat-number">53</span>
+                        <span class="school-stat-label">Master 1 Commerce International (AMU)</span>
+                    </div>
+                    <div class="school-stat">
+                        <span class="school-stat-number">16</span>
+                        <span class="school-stat-label">Étudiants en Sciences Agronomiques (UFV)</span>
+                    </div>
+                    <div class="school-stat">
+                        <span class="school-stat-number">7+</span>
+                        <span class="school-stat-label">Fermes Familiales Partenaires</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="section">
+        <div class="container">
+            <h2 class="section-title">Principaux Résultats</h2>
+
+            <div class="results-grid">
+                <div class="result-card highlight">
+                    <div class="result-icon">🏆</div>
+                    <h3 class="result-title">Meilleur des Meilleurs</h3>
+                    <p class="result-description">Le café d'Araponga a remporté le titre de "Best of the Best" au prix Ernesto Illy 2024 à New York</p>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">📊</div>
+                    <h3 class="result-title">Revue Systématique de la Littérature</h3>
+                    <p class="result-description">140 articles analysés (2020-2025) sur la traçabilité, le café et la durabilité</p>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">🛰️</div>
+                    <h3 class="result-title">Étude de Connectivité</h3>
+                    <p class="result-description">1 270 000 hectares cartographiés en utilisant MapBiomas, CAR et données satellitaires</p>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">📝</div>
+                    <h3 class="result-title">Recherche de Terrain</h3>
+                    <p class="result-description">41 entretiens réalisés à Araponga (MG) - 835 hectares analysés</p>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">🔬</div>
+                    <h3 class="result-title">Découverte Paradoxale</h3>
+                    <p class="result-description">Les petits producteurs montrent une meilleure conformité environnementale mais manquent de capacités de documentation numérique</p>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">📚</div>
+                    <h3 class="result-title">Publications</h3>
+                    <p class="result-description">Articles en cours sur l'innovation frugale, la connectivité et les systèmes de traçabilité</p>
+                </div>
+            </div>
+
+            <!-- Biome Table -->
+            <div class="biome-section">
+                <h3 class="biome-title">Connectivité & Déforestation par Biome</h3>
+                <div class="table-responsive">
+                    <table class="biome-table">
+                        <thead>
+                            <tr>
+                                <th>Biome</th>
+                                <th>Surface Brûlée (%)</th>
+                                <th>Surface Connectée (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mata Atlântica</td>
+                                <td>1.11%</td>
+                                <td>52.23%</td>
+                            </tr>
+                            <tr>
+                                <td>Pampa</td>
+                                <td>0.04%</td>
+                                <td>20.03%</td>
+                            </tr>
+                            <tr>
+                                <td>Caatinga</td>
+                                <td>0.54%</td>
+                                <td>17.13%</td>
+                            </tr>
+                            <tr>
+                                <td>Cerrado</td>
+                                <td>5.32%</td>
+                                <td>5.81%</td>
+                            </tr>
+                            <tr>
+                                <td>Amazônia</td>
+                                <td>3.95%</td>
+                                <td>2.69%</td>
+                            </tr>
+                            <tr>
+                                <td>Pantanal</td>
+                                <td>14.33%</td>
+                                <td>1.18%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-note">*Données de l'étude ConectarAGRO/UFV présentées à la COP 30 à Belém, Brésil</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Restez en Contact</h3>
+                    <p>Pour plus d'informations sur le projet TerroirLink, les partenariats ou la collaboration de recherche :</p>
+                    <div class="contact-item">
+                        <strong>📧 Email :</strong>
+                        <a href="mailto:gustavo.bastos@ufv.br">gustavo.bastos@ufv.br</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>🏫 Institution :</strong>
+                        Universidade Federal de Viçosa (UFV)
+                    </div>
+                    <div class="contact-item">
+                        <strong>🌐 Programme :</strong>
+                        #DigitAg
+                    </div>
+                    <div class="contact-item">
+                        <strong>📍 Lieu :</strong>
+                        Viçosa, Minas Gerais, Brésil
+                    </div>
+                </div>
+                <div class="contact-collaboration">
+                    <h3>Opportunités de Collaboration</h3>
+                    <ul class="opportunity-list">
+                        <li>Partenariats de recherche avec des institutions françaises et brésiliennes</li>
+                        <li>Connexions directes ferme-torréfacteur</li>
+                        <li>Transfert de technologie pour les systèmes de traçabilité</li>
+                        <li>Programmes d'échange d'étudiants et de formation</li>
+                        <li>Mise en œuvre des Systèmes de Garantie Participatifs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>TerroirLink</h4>
+<div class="footer-logos">
+                         <img src="images/logo_final_colorful.png" alt="TerroirLink" class="footer-logo">
+                         <img src="images/Logos_instituicoes_colorful.png" alt="Institutions Partenaires" class="footer-logo">
+                     </div>
+                    <p class="footer-slogan">Bâtir des chaînes de valeur café durables grâce à l'innovation et à la collaboration</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#team">Équipe</a></li>
+                        <li><a href="#research">Recherche</a></li>
+                        <li><a href="#videos">Vidéos</a></li>
+                        <li><a href="#news">Actualités</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Institutions Partenaires</h4>
+                    <ul class="footer-links">
+                        <li>UFV Brésil</li>
+                        <li>AMU France</li>
+                        <li>UM Montpellier</li>
+                        <li>CIRAD</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Projet TerroirLink. Tous droits réservés.</p>
+                <p class="footer-flags">🇫🇷 × 🇧🇷</p>
+                <p class="admin-login"><a href="admin.html">Panneau Admin</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Modal Forms -->
+    <div id="news-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeNewsForm()">&times;</span>
+            <h2>Ajouter un Article d'Actualité</h2>
+            <form id="news-form">
+                <input type="text" id="news-title" placeholder="Titre de l'article" required>
+                <input type="date" id="news-date" required>
+                <textarea id="news-content" placeholder="Contenu de l'article" rows="5" required></textarea>
+                <button type="submit" class="submit-btn">Publier l'Actualité</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeVideoForm()">&times;</span>
+            <h2>Ajouter une Vidéo</h2>
+            <form id="video-form">
+                <input type="text" id="video-title" placeholder="Titre de la vidéo" required>
+                <input type="url" id="video-url" placeholder="URL de la vidéo (YouTube, Vimeo, etc.)" required>
+                <textarea id="video-desc" placeholder="Description de la vidéo" rows="3"></textarea>
+                <button type="submit" class="submit-btn">Ajouter la Vidéo</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

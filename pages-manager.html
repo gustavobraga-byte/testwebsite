@@ -1,0 +1,699 @@
+<!
+DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Manager - Café MRM Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .page-manager-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+        
+        .page-manager-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-manager-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--coffee-dark);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .section-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-card h3 {
+            color: var(--coffee-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .section-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .section-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-edit {
+            padding: 0.5rem 1.5rem;
+            background: var(--green-medium);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-edit:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-delete {
+            padding: 0.5rem 1.5rem;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-delete:hover {
+            background: #c82333;
+        }
+        
+        .btn-create {
+            padding: 1rem 2rem;
+            background: var(--coffee-medium);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto;
+        }
+        
+        .btn-create:hover {
+            background: var(--coffee-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .links-section {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .links-section h3 {
+            color: var(--coffee-dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .link-item {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .link-info {
+            flex: 1;
+        }
+        
+        .link-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeInDown 0.3s ease;
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--green-medium);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: var(--green-medium);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--green-dark);
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .menu-order {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .color-picker {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .color-option:hover,
+        .color-option.active {
+            border-color: var(--coffee-dark);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo_final.png" alt="Café MRM" class="logo-img">
+                <span>Page Manager</span>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="admin.html" style="color: var(--white); text-decoration: none;">Admin Panel</a>
+                <a href="index.html" style="color: var(--white); text-decoration: none;">View Site</a>
+                <button class="btn-secondary" onclick="logout()" style="color: white;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-manager-container" id="page-manager" style="display: none;">
+        <div class="page-manager-header">
+            <h1>Page Manager</h1>
+            <p>Create, edit, and manage all website pages and sections</p>
+        </div>
+
+        <div class="success-message" id="success-message"></div>
+
+        <!-- Existing Sections -->
+        <h2 style="color: var(--coffee-dark); margin-bottom: 2rem; text-align: center;">Existing Sections</h2>
+        <div class="sections-grid" id="sections-grid">
+            <!-- Sections will be loaded here -->
+        </div>
+
+        <button class="btn-create" onclick="showCreateSectionModal()">+ Create New Section/Page</button>
+
+        <!-- Links Manager -->
+        <div class="links-section">
+            <h3>Manage Links</h3>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">Add or edit web links in any section</p>
+            <div class="link-item">
+                <div class="link-info">
+                    <strong>GitHub Repository</strong><br>
+                    <small>https://github.com/cafe-mrm/project</small>
+                </div>
+                <div class="link-actions">
+                    <button class="btn-edit" onclick="editLink(this)">Edit</button>
+                    <button class="btn-delete" onclick="deleteLink(this)">Delete</button>
+                </div>
+            </div>
+            <div class="link-item">
+                <div class="link-info">
+                    <strong>EUDR Regulation</strong><br>
+                    <small>https://ec.europa.eu/environment/legal/law/trade/import/forest-law_en.htm</small>
+                </div>
+                <div class="link-actions">
+                    <button class="btn-edit" onclick="editLink(this)">Edit</button>
+                    <button class="btn-delete" onclick="deleteLink(this)">Delete</button>
+                </div>
+            </div>
+            <button class="btn-edit" onclick="showAddLinkModal()" style="margin-top: 1rem;">+ Add New Link</button>
+        </div>
+
+        <!-- Logo Customization -->
+        <div class="admin-card">
+            <h3>Logo Customization</h3>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">Change logo colors and styles</p>
+            <div class="color-picker" id="logo-color-picker">
+                <div class="color-option" style="background: #2C1810;" onclick="changeLogoColor('#2C1810', this)"></div>
+                <div class="color-option" style="background: #4A2C2A;" onclick="changeLogoColor('#4A2C2A', this)"></div>
+                <div class="color-option" style="background: #8B5E3C;" onclick="changeLogoColor('#8B5E3C', this)"></div>
+                <div class="color-option" style="background: #2D5A27;" onclick="changeLogoColor('#2D5A27', this)"></div>
+                <div class="color-option" style="background: #4A8C3F;" onclick="changeLogoColor('#4A8C3F', this)"></div>
+                <div class="color-option" style="background: #FF6B6B;" onclick="changeLogoColor('#FF6B6B', this)"></div>
+                <div class="color-option" style="background: #4ECDC4;" onclick="changeLogoColor('#4ECDC4', this)"></div>
+                <div class="color-option" style="background: #45B7D1;" onclick="changeLogoColor('#45B7D1', this)"></div>
+            </div>
+            <button class="btn-primary" onclick="applyLogoChanges()" style="margin-top: 1.5rem;">Apply Logo Changes</button>
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-container" id="login-container">
+        <h2>Admin Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Login</button>
+        </form>
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+            Default: admin / cafe2024
+        </p>
+    </div>
+
+    <!-- Create Section Modal -->
+    <div id="create-section-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCreateSectionModal()">&times;</span>
+            <h2>Create New Section/Page</h2>
+            <form id="create-section-form">
+                <div class="form-group">
+                    <label>Section Name</label>
+                    <input type="text" id="section-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Page Type</label>
+                    <select id="section-type">
+                        <option value="main">Add to Main Page</option>
+                        <option value="newpage">Create New Page</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Section ID (for new page)</label>
+                    <input type="text" id="section-id" placeholder="e.g., research-team">
+                </div>
+                <div class="form-group">
+                    <label>Content (HTML supported)</label>
+                    <textarea id="section-content" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Menu Order (0 = at end)</label>
+                    <input type="number" id="section-order" value="0" min="0">
+                </div>
+                <button type="submit" class="btn-primary">Create Section</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Section Modal -->
+    <div id="edit-section-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditSectionModal()">&times;</span>
+            <h2>Edit Section</h2>
+            <form id="edit-section-form">
+                <input type="hidden" id="edit-section-index">
+                <div class="form-group">
+                    <label>Section Name</label>
+                    <input type="text" id="edit-section-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Content (HTML supported)</label>
+                    <textarea id="edit-section-content" rows="10" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Link Modal -->
+    <div id="add-link-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddLinkModal()">&times;</span>
+            <h2>Add New Link</h2>
+            <form id="add-link-form">
+                <div class="form-group">
+                    <label>Link Title</label>
+                    <input type="text" id="link-title" required>
+                </div>
+                <div class="form-group">
+                    <label>URL</label>
+                    <input type="url" id="link-url" required>
+                </div>
+                <div class="form-group">
+                    <label>Section</label>
+                    <select id="link-section">
+                        <option value="research">Research</option>
+                        <option value="partnerships">Partnerships</option>
+                        <option value="about">About</option>
+                        <option value="contact">Contact</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Add Link</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const DEFAULT_USER = 'admin';
+        const DEFAULT_PASS = 'cafe2024';
+
+        if (localStorage.getItem('cafe-mrm-admin-logged-in') === 'true') {
+            showPageManager();
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === DEFAULT_USER && password === DEFAULT_PASS) {
+                localStorage.setItem('cafe-mrm-admin-logged-in', 'true');
+                showPageManager();
+                showMessage('Login successful!');
+            } else {
+                alert('Invalid credentials. Try admin / cafe2024');
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('cafe-mrm-admin-logged-in');
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('page-manager').style.display = 'none';
+            showMessage('Logged out successfully!');
+        }
+
+        function showPageManager() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('page-manager').style.display = 'block';
+            loadSections();
+        }
+
+        function showMessage(msg) {
+            const msgDiv = document.getElementById('success-message');
+            msgDiv.textContent = msg;
+            msgDiv.classList.add('show');
+            setTimeout(function() {
+                msgDiv.classList.remove('show');
+            }, 3000);
+        }
+
+        // Section Management
+        function loadSections() {
+            const sections = JSON.parse(localStorage.getItem('cafe-mrm-sections') || getDefaultSections());
+            const grid = document.getElementById('sections-grid');
+            grid.innerHTML = '';
+
+            sections.forEach(function(section, index) {
+                const card = document.createElement('div');
+                card.className = 'section-card';
+                card.innerHTML = `
+                    <h3>${section.name}</h3>
+                    <p>${section.content.substring(0, 150)}...</p>
+                    <div class="section-actions">
+                        <button class="btn-edit" onclick="editSection(${index})">Edit</button>
+                        <button class="btn-delete" onclick="deleteSection(${index})">Delete</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function getDefaultSections() {
+            return [
+                { name: 'Home (Hero)', content: 'Hero section with logos and main title', type: 'main', id: 'home', editable: true },
+                { name: 'About', content: 'Project description, timeline, and statistics', type: 'main', id: 'about', editable: true },
+                { name: 'Team', content: 'Scientific committee members from France and Brazil', type: 'main', id: 'team', editable: true },
+                { name: 'Research Themes', content: 'Sustainability, Innovation, Responsibility, Traceability', type: 'main', id: 'research', editable: true },
+                { name: 'Videos', content: 'Project videos and presentations', type: 'main', id: 'videos', editable: true },
+                { name: 'News', content: 'Latest news and updates', type: 'main', id: 'news', editable: true },
+                { name: 'Partnerships', content: 'Academic institutions and territorial actors', type: 'main', id: 'partnerships', editable: true },
+                { name: 'Results', content: 'Key findings and data tables', type: 'main', id: 'results', editable: true },
+                { name: 'Contact', content: 'Contact information and collaboration opportunities', type: 'main', id: 'contact', editable: true }
+            ];
+        }
+
+        // Create Section Modal
+        function showCreateSectionModal() {
+            document.getElementById('create-section-modal').classList.add('active');
+        }
+
+        function closeCreateSectionModal() {
+            document.getElementById('create-section-modal').classList.remove('active');
+        }
+
+        document.getElementById('create-section-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const section = {
+                name: document.getElementById('section-name').value,
+                type: document.getElementById('section-type').value,
+                id: document.getElementById('section-id').value || 'section-' + Date.now(),
+                content: document.getElementById('section-content').value,
+                order: parseInt(document.getElementById('section-order').value)
+            };
+
+            let sections = JSON.parse(localStorage.getItem('cafe-mrm-sections') || '[]');
+            sections.push(section);
+            localStorage.setItem('cafe-mrm-sections', JSON.stringify(sections));
+            
+            closeCreateSectionModal();
+            loadSections();
+            this.reset();
+            showMessage('Section created successfully!');
+        });
+
+        // Edit Section Modal
+        function editSection(index) {
+            const sections = JSON.parse(localStorage.getItem('cafe-mrm-sections') || getDefaultSections());
+            const section = sections[index];
+            
+            document.getElementById('edit-section-index').value = index;
+            document.getElementById('edit-section-name').value = section.name;
+            document.getElementById('edit-section-content').value = section.content;
+            
+            document.getElementById('edit-section-modal').classList.add('active');
+        }
+
+        function closeEditSectionModal() {
+            document.getElementById('edit-section-modal').classList.remove('active');
+        }
+
+        document.getElementById('edit-section-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const index = parseInt(document.getElementById('edit-section-index').value);
+            const sections = JSON.parse(localStorage.getItem('cafe-mrm-sections') || getDefaultSections());
+            
+            sections[index].name = document.getElementById('edit-section-name').value;
+            sections[index].content = document.getElementById('edit-section-content').value;
+            
+            localStorage.setItem('cafe-mrm-sections', JSON.stringify(sections));
+            
+            closeEditSectionModal();
+            loadSections();
+            showMessage('Section updated successfully!');
+        });
+
+        function deleteSection(index) {
+            if (confirm('Are you sure you want to delete this section?')) {
+                let sections = JSON.parse(localStorage.getItem('cafe-mrm-sections') || '[]');
+                sections.splice(index, 1);
+                localStorage.setItem('cafe-mrm-sections', JSON.stringify(sections));
+                loadSections();
+                showMessage('Section deleted successfully!');
+            }
+        }
+
+        // Link Management
+        function showAddLinkModal() {
+            document.getElementById('add-link-modal').classList.add('active');
+        }
+
+        function closeAddLinkModal() {
+            document.getElementById('add-link-modal').classList.remove('active');
+        }
+
+        document.getElementById('add-link-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const link = {
+                title: document.getElementById('link-title').value,
+                url: document.getElementById('link-url').value,
+                section: document.getElementById('link-section').value
+            };
+
+            let links = JSON.parse(localStorage.getItem('cafe-mrm-links') || '[]');
+            links.push(link);
+            localStorage.setItem('cafe-mrm-links', JSON.stringify(links));
+            
+            closeAddLinkModal();
+            this.reset();
+            showMessage('Link added successfully!');
+        });
+
+        function editLink(button) {
+            const linkItem = button.closest('.link-item');
+            const title = linkItem.querySelector('.link-info strong').textContent;
+            const url = linkItem.querySelector('.link-info small').textContent;
+            
+            const newTitle = prompt('Edit link title:', title);
+            const newUrl = prompt('Edit link URL:', url);
+            
+            if (newTitle && newUrl) {
+                linkItem.querySelector('.link-info strong').textContent = newTitle;
+                linkItem.querySelector('.link-info small').textContent = newUrl;
+                showMessage('Link updated successfully!');
+            }
+        }
+
+        function deleteLink(button) {
+            if (confirm('Delete this link?')) {
+                button.closest('.link-item').remove();
+                showMessage('Link deleted successfully!');
+            }
+        }
+
+        // Logo Color Management
+        let selectedLogoColor = '#2C1810';
+
+        function changeLogoColor(color, element) {
+            selectedLogoColor = color;
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function applyLogoChanges() {
+            // Save logo color preference
+            localStorage.setItem('cafe-mrm-logo-color', selectedLogoColor);
+            showMessage('Logo color updated! Refresh the main site to see changes.');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            const modals = ['create-section-modal', 'edit-section-modal', 'add-link-modal'];
+            modals.forEach(function(modalId) {
+                const modal = document.getElementById(modalId);
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
